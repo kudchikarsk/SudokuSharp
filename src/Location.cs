@@ -11,8 +11,6 @@ namespace SudokuSharp
     [DataContract]
     public class Location
     {
-        private Location() { }
-
         public static int Index(int Column, int Row)
         {
             return (9 * Row) + Column;
