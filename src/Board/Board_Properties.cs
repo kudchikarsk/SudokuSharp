@@ -67,14 +67,13 @@ namespace SudokuSharp
                 int[,] CountByColumn = new int[9, 10];
                 int[,] CountByZone = new int[9, 10];
 
-                for (int i = 0; i < 81; i++)
+                for (int idx = 0; idx < 81; idx++)
                 {
-                    Location loc = i;
-                    int value = GetCell(i);
+                    int value = GetCell(idx);
 
-                    CountByRow[loc.Row, value]++;
-                    CountByColumn[loc.Column, value]++;
-                    CountByZone[loc.Zone, value]++;
+                    CountByRow[Location.Row(idx), value]++;
+                    CountByColumn[Location.Column(idx), value]++;
+                    CountByZone[Location.Zone(idx), value]++;
                 }
 
                 for (int area = 0; area < 9; area++)
@@ -125,13 +124,12 @@ namespace SudokuSharp
                 bool[] isColPopulated = new bool[9];
                 bool[] isRowPopulated = new bool[9];
 
-                for (int i = 0; i < 81; i++)
+                for (int idx = 0; idx < 81; idx++)
                 {
-                    if (data[i] > 0)
+                    if (data[idx] > 0)
                     {
-                        Location loc = i;
-                        isColPopulated[loc.Column] = true;
-                        isRowPopulated[loc.Row] = true;
+                        isColPopulated[Location.Column(idx)] = true;
+                        isRowPopulated[Location.Row(idx)] = true;
                     }
                 }
 

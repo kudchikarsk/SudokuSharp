@@ -11,7 +11,7 @@ namespace SudokuSharp
             /// Looks for Naked Singles. These are cells with only a single candidate
             /// </summary>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> NakedSingles()
+            public IEnumerable<KeyValuePair<int, int>> NakedSingles()
             {
                 return NakedSingles(AllCandidates());
             }
@@ -22,18 +22,18 @@ namespace SudokuSharp
             /// </summary>
             /// <param name="Possibilities">A set of candidates</param>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> NakedSingles(IEnumerable<KeyValuePair<Location, List<int>>> Possibilities)
+            public IEnumerable<KeyValuePair<int, int>> NakedSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
             {
                 return from item in Possibilities
                        where item.Value.Count == 1
-                       select new KeyValuePair<Location, int>(item.Key, item.Value.First());
+                       select new KeyValuePair<int, int>(item.Key, item.Value.First());
             }
 
             /// <summary>
             /// Looks for Hidden Singles. These are digits which may only be placed in one cell within a row, column, or zone
             /// </summary>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> HiddenSingles()
+            public IEnumerable<KeyValuePair<int, int>> HiddenSingles()
             {
                 return HiddenSingles(AllCandidates());
             }
@@ -44,9 +44,9 @@ namespace SudokuSharp
             /// </summary>
             /// <param name="Possibilities">A set of candidates</param>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> HiddenSingles(IEnumerable<KeyValuePair<Location, List<int>>> Possibilities)
+            public IEnumerable<KeyValuePair<int, int>> HiddenSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
             {
-                Dictionary<Location, int> results = new Dictionary<Location, int>();
+                Dictionary<int, int> results = new Dictionary<int, int>();
 
                 for (int number = 1; number < 10; number++)
                 {
@@ -56,11 +56,11 @@ namespace SudokuSharp
 
                     for (int test = 0; test < 9; test++)
                     {
-                        var possible = from item in locationsForThisNumber where item.Zone == test select item;
+                        var possible = from Index in locationsForThisNumber where Location.Zone(Index) == test select Index;
                         if (possible.Count() == 1) results[possible.First()] = number;
-                        possible = from item in locationsForThisNumber where item.Row == test select item;
+                        possible = from Index in locationsForThisNumber where Location.Row(Index) == test select Index;
                         if (possible.Count() == 1) results[possible.First()] = number;
-                        possible = from item in locationsForThisNumber where item.Column == test select item;
+                        possible = from Index in locationsForThisNumber where Location.Column(Index) == test select Index;
                         if (possible.Count() == 1) results[possible.First()] = number;
                     }
                 }
@@ -72,7 +72,7 @@ namespace SudokuSharp
             /// Returns a the results of both Naked Singles and Hidden Singles
             /// </summary>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location,int>> AllSingles()
+            public IEnumerable<KeyValuePair<int,int>> AllSingles()
             {
                 return HiddenSingles().Union(NakedSingles());
             }
@@ -83,7 +83,7 @@ namespace SudokuSharp
             /// </summary>
             /// <param name="Possibilities">A set of candidates</param>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> AllSingles(IEnumerable<KeyValuePair<Location, List<int>>> Possibilities)
+            public IEnumerable<KeyValuePair<int, int>> AllSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
             {
                 return HiddenSingles(Possibilities).Union(NakedSingles(Possibilities));
             }

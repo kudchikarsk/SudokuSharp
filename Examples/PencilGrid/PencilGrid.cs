@@ -38,28 +38,28 @@ namespace SudokuSharp.Examples
         /// <param name="where">The <see cref="Location"/> to check.</param>
         /// <param name="value">The number to check.</param>
         /// <returns></returns>
-        public bool Get(Location where, int value) { return data[where][value]; }
+        public bool Get(int where, int value) { return data[where][value]; }
         /// <summary>
         /// Sets a pencil mark.
         /// </summary>
         /// <param name="where">The <see cref="Location"/> to set.</param>
         /// <param name="value">The number to set.</param>
         /// <returns></returns>
-        public bool Set(Location where, int value) { return data[where][value] = true; }
+        public bool Set(int where, int value) { return data[where][value] = true; }
         /// <summary>
         /// Clears the specified pencil mark.
         /// </summary>
         /// <param name="where">The <see cref="Location"/> to clear.</param>
         /// <param name="value">The number to clear.</param>
         /// <returns></returns>
-        public bool Clear(Location where, int value) { return data[where][value] = false; }
+        public bool Clear(int where, int value) { return data[where][value] = false; }
         /// <summary>
         /// Toggles the specified pencil mark.
         /// </summary>
         /// <param name="where">The <see cref="Location"/> to toggle.</param>
         /// <param name="value">The number to toggle.</param>
         /// <returns></returns>
-        public bool Toggle(Location where, int value) { return (data[where][value] = !data[where][value]); }
+        public bool Toggle(int where, int value) { return (data[where][value] = !data[where][value]); }
 
         /// <summary>
         /// Returns an array of all the pencil marks at a given <see cref="Location"/>.
@@ -68,7 +68,7 @@ namespace SudokuSharp.Examples
         /// </summary>
         /// <param name="where">The <see cref="Location"/>.</param>
         /// <returns></returns>
-        public bool[] GetMarks(Location where)
+        public bool[] GetMarks(int where)
         {
             bool[] result = new bool[10];
             Array.Copy(data[where], result, 10);

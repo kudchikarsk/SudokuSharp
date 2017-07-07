@@ -15,7 +15,7 @@ namespace SudokuSharp.Examples.History
         /// <param name="Target">The board being played.</param>
         /// <param name="Where">The <see cref="Location"/> of the guess.</param>
         /// <param name="Value">The number to place.</param>
-        public Guess(Board Target, Location Where, int Value)
+        public Guess(Board Target, int Where, int Value)
         {
             _target = Target;
             _where = Where;
@@ -43,7 +43,7 @@ namespace SudokuSharp.Examples.History
         [DataMember]
         private Board _target;
         [DataMember]
-        private Location _where;
+        private int _where;
         [DataMember]
         private int _value;
         [DataMember]

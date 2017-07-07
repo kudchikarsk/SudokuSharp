@@ -28,7 +28,7 @@ namespace SolutionCreation
         static void Main(string[] args)
         {
             int Batches = 10;
-            int BatchSize = 10000;
+            int BatchSize = 100_000;
 
             Console.WriteLine("Timing the creation of {0:N0} boards.", Batches*BatchSize);
             var rnd = new Random(0);

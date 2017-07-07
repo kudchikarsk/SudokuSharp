@@ -49,7 +49,7 @@ namespace SudokuSharp.Examples
         /// </summary>
         /// <param name="Where">The <see cref="Location"/>.</param>
         /// <returns></returns>
-        public Cell GetCell(Location Where)
+        public Cell GetCell(int Where)
         {
             CellType type;
             int value;
@@ -81,13 +81,13 @@ namespace SudokuSharp.Examples
         /// </summary>
         /// <param name="Where">The where.</param>
         /// <param name="Value">The value.</param>
-        public void PutCell(Location Where, int Value)
+        public void PutCell(int Where, int Value)
         {
             List<History.IHistoryAction> historyGroup = new List<History.IHistoryAction>();
             historyGroup.Add(new History.Guess(_work, Where, Value));
             if (AutoPencilMarkClearing)
             {
-                foreach (Location loc in Where.Blocking)
+                foreach (int loc in Location.Blocking[Where])
                 {
                     if (_scratchPad.Get(loc, Value))
                         historyGroup.Add(new History.PencilClear(_scratchPad, loc, Value));
@@ -120,7 +120,7 @@ namespace SudokuSharp.Examples
         /// </summary>
         /// <param name="where">The location to mark</param>
         /// <param name="value">The number to mark</param>
-        public void TogglePencil(Location where, int value)
+        public void TogglePencil(int where, int value)
         {
             _scratchPad.Toggle(where, value);
 
@@ -136,7 +136,7 @@ namespace SudokuSharp.Examples
         /// </summary>
         /// <param name="Where">The <see cref="Location"/> to check.</param>
         /// <returns></returns>
-        public bool IsCorrect(Location Where)
+        public bool IsCorrect(int Where)
         {
             if (_givens[Where] > 0)
                 return true;

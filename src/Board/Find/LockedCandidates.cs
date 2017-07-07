@@ -14,7 +14,7 @@ namespace SudokuSharp
             /// Removes those candidates from that column or row in other zones, and checks for cells which may be solved
             /// </summary>
             /// <returns>A set of <see cref="KeyValuePair{Location, Int32}"/> items</returns>
-            public IEnumerable<KeyValuePair<Location, int>> LockedCandidates()
+            public IEnumerable<KeyValuePair<int, int>> LockedCandidates()
             {
                 var possible = AllCandidates();
 
@@ -27,35 +27,35 @@ namespace SudokuSharp
                     for (int zone = 0; zone < 9; zone++)
                     {
                         var numberLocationsInThisZone = from loc in numberLocations
-                                                        where loc.Zone == zone
+                                                        where Location.Zone(loc) == zone
                                                         select loc;
 
                         if (numberLocationsInThisZone.Count() > 0)
                         {
-                            int lockedRow = numberLocationsInThisZone.First().Row;
-                            int lockedColumn = numberLocationsInThisZone.First().Column;
+                            int lockedRow = Location.Row(numberLocationsInThisZone.First());
+                            int lockedColumn = Location.Column(numberLocationsInThisZone.First());
 
                             foreach (var loc in numberLocationsInThisZone)
                             {
-                                if (loc.Row != lockedRow) lockedRow = -1;
-                                if (loc.Column != lockedColumn) lockedColumn = -1;
+                                if (Location.Row(loc) != lockedRow) lockedRow = -1;
+                                if (Location.Column(loc) != lockedColumn) lockedColumn = -1;
                             }
                             if (lockedRow != -1)
                             {
                                 foreach (var loc in
-                                    (from item in numberLocations
-                                     where item.Zone != zone
-                                     where item.Row == lockedRow
-                                     select item))
+                                    (from idx in numberLocations
+                                     where Location.Zone(idx) != zone
+                                     where Location.Row(idx) == lockedRow
+                                     select idx))
                                     possible[loc].Remove(number);
                             }
                             if (lockedColumn != -1)
                             {
                                 foreach (var loc in
-                                    (from item in numberLocations
-                                     where item.Zone != zone
-                                     where item.Column == lockedColumn
-                                     select item))
+                                    (from idx in numberLocations
+                                     where Location.Zone(idx) != zone
+                                     where Location.Column(idx) == lockedColumn
+                                     select idx))
                                     possible[loc].Remove(number);
                             }
                         }

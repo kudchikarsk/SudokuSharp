@@ -55,27 +55,24 @@ namespace SudokuSharp
                 if (Index == 81)
                     return true;
 
-                var loc = new Location(Index);
-
-                if (work[loc] > 0)
+                if (work[Index] > 0)
                     return RandomRecursion(work, data, Digits, Index + 1);
 
                 foreach (int test in Digits)
                 {
-                    if (!data.DigitInRow[test, loc.Row] && !data.DigitInColumn[test, loc.Column] && !data.DigitInZone[test, loc.Zone])
+                    if (!data.DigitInRow[test, Location.Row(Index)] && !data.DigitInColumn[test, Location.Column(Index)] && !data.DigitInZone[test, Location.Zone(Index)])
                     {
-                        work[loc] = test;
-                        data.DigitInRow[test, loc.Row] = data.DigitInColumn[test, loc.Column] = data.DigitInZone[test, loc.Zone] = true;
+                        work[Index] = test;
+                        data.DigitInRow[test, Location.Row(Index)] = data.DigitInColumn[test, Location.Column(Index)] = data.DigitInZone[test, Location.Zone(Index)] = true;
                         if (RandomRecursion(work, data, Digits, Index + 1))
                             return true;
-                        data.DigitInRow[test, loc.Row] = data.DigitInColumn[test, loc.Column] = data.DigitInZone[test, loc.Zone] = false;
+                        data.DigitInRow[test, Location.Row(Index)] = data.DigitInColumn[test, Location.Column(Index)] = data.DigitInZone[test, Location.Zone(Index)] = false;
                     }
                 }
 
-                work[loc] = 0;
+                work[Index] = 0;
                 return false;
             }
         }
     }
 }
-

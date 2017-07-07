@@ -33,13 +33,13 @@ namespace SudokuSharp
         /// </summary>
         /// <param name="Where">The cell to check; may be provided as either an instance of <see cref="Location"/> or the integer index of the cell.</param>
         /// <returns></returns>
-        public int GetCell(Location Where) { return this[Where]; }
+        public int GetCell(int Where) { return this[Where]; }
         /// <summary>
         /// Fills a cell in.
         /// </summary>
         /// <param name="Where">The <see cref="Location"/> of the cell to fill.</param>
         /// <param name="value">The value to place; 0 for clear, or 1-9.</param>
-        public void PutCell(Location Where, int value) { this[Where] = value; }
+        public void PutCell(int Where, int value) { this[Where] = value; }
 
         /// <summary>
         /// Overrides array indexing (suare brackets []) for accessing locations in the Grid.
@@ -55,7 +55,7 @@ namespace SudokuSharp
         /// </value>
         /// <param name="where">The <see cref="Location"/> to access.</param>
         /// <returns></returns>
-        public int this[Location where]
+        public int this[int where]
         {
             get { return data[where]; }
             set { data[where] = value; }
@@ -102,9 +102,9 @@ namespace SudokuSharp
             foreach (var loc in Location.All)
             {
                 sb.Append((this[loc] > 0) ? this[loc].ToString() : "-");
-                if (loc.Column % 3 == 2) sb.Append(" ");
-                if (loc.Column == 8) sb.Append("\n");
-                if ((loc.Column == 8) && (loc.Row % 3 == 2)) sb.Append("\n");
+                if (Location.Column(loc) % 3 == 2) sb.Append(" ");
+                if (Location.Column(loc) == 8) sb.Append("\n");
+                if ((Location.Column(loc) == 8) && (Location.Row(loc) % 3 == 2)) sb.Append("\n");
             }
             return sb.ToString();
         }

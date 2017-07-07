@@ -50,12 +50,12 @@ namespace SudokuSharp
 
                 if (Filled.Count > 0)
                 {
-                    Location loc = new Location(Filled[Stream.Next(Filled.Count)]);
+                    int loc = Filled[Stream.Next(Filled.Count)];
 
                     result[loc] = 0;
-                    result[loc.FlipHorizontal()] = 0;
-                    result[loc.FlipVertical()] = 0;
-                    result[loc.FlipHorizontal().FlipVertical()] = 0;
+                    result[Location.FlipHorizontal(loc)] = 0;
+                    result[Location.FlipVertical(loc)] = 0;
+                    result[Location.FlipHorizontal(Location.FlipVertical(loc))] = 0;
 
                     if (result.ExistsUniqueSolution())
                         return result;
@@ -76,14 +76,14 @@ namespace SudokuSharp
 
                 if (Filled.Count > 0)
                 {
-                    Location loc = new Location(Filled[Stream.Next(Filled.Count)]);
+                    int loc = Filled[Stream.Next(Filled.Count)];
 
                     result[loc] = 0;
 
                     if (Stream.Next(2) == 1)
-                        result[loc.FlipHorizontal()] = 0;
+                        result[Location.FlipHorizontal(loc)] = 0;
                     else
-                        result[loc.FlipVertical()] = 0;
+                        result[Location.FlipVertical(loc)] = 0;
 
                     if (result.ExistsUniqueSolution())
                         return result;
@@ -158,7 +158,7 @@ namespace SudokuSharp
             {
                 var result = new Board(_parent);
 
-                List<Location> Randomized = new List<Location>();
+                List<int> Randomized = new List<int>();
 
                 var Filled = _parent.Find.FilledLocations();
                 foreach (var loc in Filled)

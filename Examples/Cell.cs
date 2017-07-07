@@ -36,7 +36,7 @@ namespace SudokuSharp.Examples
         /// <param name="Value">The number that is there.</param>
         /// <param name="Pencils">A <see cref="bool"/> array of values representing the pencil marks; true for present, false for clear.
         /// Note that the array contains values for 0-9 even though a pencil mark for 0 (clear) doesn't make sense. This just makes the handling easier.</param>
-        public Cell(Location Where, CellType Type, int Value, bool[] Pencils)
+        public Cell(int Where, CellType Type, int Value, bool[] Pencils)
         {
             this.Where = Where;
             this.Value = Value;
@@ -48,7 +48,7 @@ namespace SudokuSharp.Examples
         /// The <see cref="Location"/> of the <see cref="Cell"/>.
         /// </summary>
         [DataMember]
-        public readonly Location Where;
+        public readonly int Where;
         /// <summary>
         /// The number placed in the <see cref="Cell"/>.
         /// </summary>

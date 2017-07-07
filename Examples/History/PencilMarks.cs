@@ -5,7 +5,7 @@ namespace SudokuSharp.Examples.History
     [DataContract]
     internal abstract class PencilActionBase
     {
-        internal PencilActionBase(PencilGrid Target, Location Where, int Value)
+        internal PencilActionBase(PencilGrid Target, int Where, int Value)
         {
             _target = Target;
             _where = Where;
@@ -15,7 +15,7 @@ namespace SudokuSharp.Examples.History
         [DataMember]
         protected PencilGrid _target;
         [DataMember]
-        protected Location _where;
+        protected int _where;
         [DataMember]
         protected int _value;
         [DataMember]
@@ -25,7 +25,7 @@ namespace SudokuSharp.Examples.History
     [DataContract]
     internal class PencilToggle : PencilActionBase, IHistoryAction
     {
-        public PencilToggle(PencilGrid Target, Location Where, int Value) : base(Target, Where, Value) { }
+        public PencilToggle(PencilGrid Target, int Where, int Value) : base(Target, Where, Value) { }
         public void Apply() { _target.Toggle(_where, _value); }
         public void Undo() { Apply(); }
     }
@@ -33,7 +33,7 @@ namespace SudokuSharp.Examples.History
     [DataContract]
     internal class PencilSet : PencilActionBase, IHistoryAction
     {
-        public PencilSet(PencilGrid Target, Location Where, int Value) : base(Target, Where, Value) { }
+        public PencilSet(PencilGrid Target, int Where, int Value) : base(Target, Where, Value) { }
         public void Apply()
         {
             _prior = _target.Get(_where, _value);
@@ -48,7 +48,7 @@ namespace SudokuSharp.Examples.History
     [DataContract]
     internal class PencilClear : PencilActionBase, IHistoryAction
     {
-        public PencilClear(PencilGrid Target, Location Where, int Value) : base(Target, Where, Value) { }
+        public PencilClear(PencilGrid Target, int Where, int Value) : base(Target, Where, Value) { }
         public void Apply()
         {
             _prior = _target.Get(_where, _value);

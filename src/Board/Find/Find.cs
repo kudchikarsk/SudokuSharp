@@ -38,7 +38,7 @@ namespace SudokuSharp
             /// Every location of the calling <see cref="Board"/> instance with no cell value
             /// </summary>
             /// <returns><see cref="IEnumerable{Location}"/></returns>
-            public IEnumerable<Location> EmptyLocations()
+            public IEnumerable<int> EmptyLocations()
             {
                 return from loc in Location.All
                        where _parent[loc] == 0
@@ -49,7 +49,7 @@ namespace SudokuSharp
             /// Every location of the calling <see cref="Board"/> instance with a cell value filled
             /// </summary>
             /// <returns><see cref="IEnumerable{Location}"/></returns>
-            public IEnumerable<Location> FilledLocations()
+            public IEnumerable<int> FilledLocations()
             {
                 return from loc in Location.All
                        where _parent[loc] > 0
@@ -61,13 +61,13 @@ namespace SudokuSharp
             /// </summary>
             /// <param name="Where">The <see cref="Location"/> to check</param>
             /// <returns><see cref="List{Int32}"/></returns>
-            public List<int> Candidates(Location Where)
+            public List<int> Candidates(int Where)
             {
                 if (_parent[Where] > 0)
                     return new List<int>();
                 
                 bool[] present = new bool[10];
-                foreach (var loc in Where.Blocking)
+                foreach (var loc in Location.Blocking[Where])
                     present[_parent[loc]] = true;
 
                 List<int> result = new List<int>();
@@ -82,9 +82,9 @@ namespace SudokuSharp
             /// For convenience, returns a container of every empty location with the candidates for that location
             /// </summary>
             /// <returns><see cref="Dictionary{Location, List}"/></returns>
-            public Dictionary<Location, List<int>> AllCandidates()
+            public Dictionary<int, List<int>> AllCandidates()
             {
-                Dictionary<Location, List<int>> result = new Dictionary<Location, List<int>>();
+                Dictionary<int, List<int>> result = new Dictionary<int, List<int>>();
 
                 foreach (var loc in EmptyLocations())
                     result[loc] = Candidates(loc);

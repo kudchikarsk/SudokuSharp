@@ -32,17 +32,15 @@ namespace SudokuSharp
                 if (work[Index] > 0)
                     return BruteForceRecursion(work, data, Index + 1);
 
-                var loc = new Location(Index);
-
                 for (int i = 1; i < 10; i++)
                 {
-                    if (!data.DigitInRow[i, loc.Row] && !data.DigitInColumn[i, loc.Column] && !data.DigitInZone[i, loc.Zone])
+                    if (!data.DigitInRow[i, Location.Row(Index)] && !data.DigitInColumn[i, Location.Column(Index)] && !data.DigitInZone[i, Location.Zone(Index)])
                     {
-                        work[loc] = i;
-                        data.DigitInRow[i, loc.Row] = data.DigitInColumn[i, loc.Column] = data.DigitInZone[i, loc.Zone] = true;
+                        work[Index] = i;
+                        data.DigitInRow[i, Location.Row(Index)] = data.DigitInColumn[i, Location.Column(Index)] = data.DigitInZone[i, Location.Zone(Index)] = true;
                         if (BruteForceRecursion(work, data, Index + 1))
                             return true;
-                        data.DigitInRow[i, loc.Row] = data.DigitInColumn[i, loc.Column] = data.DigitInZone[i, loc.Zone] = false;
+                        data.DigitInRow[i, Location.Row(Index)] = data.DigitInColumn[i, Location.Column(Index)] = data.DigitInZone[i, Location.Zone(Index)] = false;
                     }
                 }
 

@@ -45,9 +45,9 @@ namespace SudokuSharp
                 {
                     foreach (var loc in Location.All)
                     {
-                        DigitInRow[Src[loc], loc.Row] =
-                            DigitInColumn[Src[loc], loc.Column] =
-                            DigitInZone[Src[loc], loc.Zone] = true;
+                        DigitInRow[Src[loc], Location.Row(loc)] =
+                            DigitInColumn[Src[loc], Location.Column(loc)] =
+                            DigitInZone[Src[loc], Location.Zone(loc)] = true;
                     }
                 }
                 public bool[,] DigitInRow = new bool[10, 9];
