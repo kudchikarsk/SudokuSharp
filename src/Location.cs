@@ -10,36 +10,17 @@ namespace SudokuSharp
     /// </summary>
     public class Location
     {
-        public static int Index(int Column, int Row)
-        {
-            return (9 * Row) + Column;
-        }
+        public static int Index(int Column, int Row) { return (9 * Row) + Column; }
 
-        public static int Row(int Index)
-        {
-            return (Index / 9);
-        }
+        public static int Row(int Index) { return (Index / 9); }
 
-        public static int Column(int Index)
-        {
-            return (Index % 9);
-        }
+        public static int Column(int Index) { return (Index % 9); }
 
-        public static int Zone(int Index)
-        {
-            return Row(Index) - (Row(Index) % 3) + (Column(Index) / 3);
-        }
+        public static int Zone(int Index) { return Row(Index) - (Row(Index) % 3) + (Column(Index) / 3); }
 
-        public static int FlipHorizontal(int Origin)
-        {
-            return Index(8 - Column(Origin), Row(Origin));
-        }
+        public static int FlipHorizontal(int Origin) { return Index(8 - Column(Origin), Row(Origin)); }
 
-        public static int FlipVertical(int Origin)
-        {
-            return Index(Column(Origin), 8 - Row(Origin));
-        }
-
+        public static int FlipVertical(int Origin) { return Index(Column(Origin), 8 - Row(Origin)); }
 
         public bool IsBlockedBy(int First, int Second)
         {
