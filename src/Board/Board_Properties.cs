@@ -67,7 +67,7 @@ namespace SudokuSharp
                 int[,] CountByColumn = new int[9, 10];
                 int[,] CountByZone = new int[9, 10];
 
-                for (int idx = 0; idx < 81; idx++)
+                foreach (var idx in Location.All)
                 {
                     int value = GetCell(idx);
 
@@ -99,9 +99,9 @@ namespace SudokuSharp
                 // Also checking for at least 16 clues total... just so it's not completely insane
 
                 bool[] present = new bool[10];
-                for (int i = 0; i < 81; i++)
+                foreach (var idx in Location.All)
                 {
-                    present[data[i]] = true;
+                    present[data[idx]] = true;
                 }
 
                 int presentCount = 0;
@@ -124,7 +124,7 @@ namespace SudokuSharp
                 bool[] isColPopulated = new bool[9];
                 bool[] isRowPopulated = new bool[9];
 
-                for (int idx = 0; idx < 81; idx++)
+                foreach (var idx in Location.All)
                 {
                     if (data[idx] > 0)
                     {
