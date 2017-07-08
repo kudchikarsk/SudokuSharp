@@ -45,14 +45,14 @@ namespace SudokuSharp
         /// Essentially, it's another way to access GetCell and PutCell.
         /// 
         /// You may use
-        ///   <see cref="Location"/> where = new <see cref="Location"/>(x,y);
+        ///   <see cref="int"/> where = <see cref="Location"/>.Index(x,y);
         ///   <see cref="int"/> result = myGrid[where];
         ///   myGrid[where] = result;
         /// </summary>
         /// <value>
         /// The <see cref="int"/> representing the value of the cell (0 for empty, 1-9 for a value).
         /// </value>
-        /// <param name="where">The <see cref="Location"/> to access.</param>
+        /// <param name="where">The index of the location to access.</param>
         /// <returns></returns>
         public int this[int where]
         {
