@@ -106,8 +106,12 @@ namespace SudokuSharp
 
                 int presentCount = 0;
                 for (int i = 1; i < 10; i++)
+                {
                     if (present[i])
+                    {
                         presentCount++;
+                    }
+                }
 
                 if (presentCount > 7)
                     return true;
