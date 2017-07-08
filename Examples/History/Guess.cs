@@ -6,7 +6,6 @@ namespace SudokuSharp.Examples.History
     /// A <see cref="Guess"/> is a number placed on the board by the user. It may or may not be correct.
     /// This class implements <see cref="IHistoryAction"/> for use in undo/redo lists.
     /// </summary>
-    [DataContract]
     public class Guess : IHistoryAction
     {
         /// <summary>
@@ -40,13 +39,9 @@ namespace SudokuSharp.Examples.History
             _target[_where] = _prior;
         }
 
-        [DataMember]
         private Board _target;
-        [DataMember]
         private int _where;
-        [DataMember]
         private int _value;
-        [DataMember]
         private int _prior;
     }
 }

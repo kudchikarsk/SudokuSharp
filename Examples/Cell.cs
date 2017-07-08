@@ -25,7 +25,6 @@ namespace SudokuSharp.Examples
     /// <summary>
     /// The <see cref="Cell"/> is returned by the Puzzle class. It contains useful information about every location in a Sudoku game, including:
     /// </summary>
-    [DataContract]
     public class Cell
     {
         /// <summary>
@@ -47,19 +46,15 @@ namespace SudokuSharp.Examples
         /// <summary>
         /// The <see cref="Location"/> of the <see cref="Cell"/>.
         /// </summary>
-        [DataMember]
         public readonly int Where;
         /// <summary>
         /// The number placed in the <see cref="Cell"/>.
         /// </summary>
-        [DataMember]
         public readonly int Value;
         /// <summary>
         /// The <see cref="CellType"/> of the cell.
         /// </summary>
-        [DataMember]
         public readonly  CellType Type;
-        [DataMember]
         private bool[] _pencilMarks;
 
         /// <summary>

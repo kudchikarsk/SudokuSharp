@@ -8,7 +8,6 @@ namespace SudokuSharp
     /// The Location class is a reference to a specific cell on a Sudoku board.
     /// It is internally represented as an integer for performance, but contains many useful methods
     /// </summary>
-    [DataContract]
     public class Location
     {
         public static int Index(int Column, int Row)

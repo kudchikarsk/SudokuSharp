@@ -7,7 +7,6 @@ namespace SudokuSharp.Examples
     /// A grid for keeping track of all the pencil marks.
     /// Many players will mark in a cell the values that may be placed there; this is represented by an array of <see cref="bool"/> values for every <see cref="Location"/> on the board.
     /// </summary>
-    [DataContract]
     public class PencilGrid
     {
         #region Constructors
@@ -77,7 +76,6 @@ namespace SudokuSharp.Examples
         }
 
         #region Internals
-        [DataMember]
         bool[][] data;
         #endregion
     }

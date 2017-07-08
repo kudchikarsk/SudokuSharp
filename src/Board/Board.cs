@@ -9,7 +9,6 @@ namespace SudokuSharp
     /// The basic Sudoku class.
     /// It contains a grid of cells with values of 0-9; 0 corresponds to an empty cell, and the other digits the possible values.
     /// </summary>
-    [DataContract]
     public partial class Board
     {
         #region Constructors
@@ -109,7 +108,6 @@ namespace SudokuSharp
             return sb.ToString();
         }
 
-        [DataMember]
         private int[] data = new int[81];
         private static int[] ZoneIndices = { 0, 3, 6, 27, 30, 33, 54, 57, 60 };
     }

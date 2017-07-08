@@ -9,7 +9,6 @@ namespace SudokuSharp.Examples
     /// 
     /// If you are building a Sudoku application and wish to have as much functionality as possible provided, use this class.
     /// </summary>
-    [DataContract]
     public class Puzzle
     {
         /// <summary>
@@ -171,17 +170,11 @@ namespace SudokuSharp.Examples
         }
 
 
-        [DataMember]
         private Board _solution;
-        [DataMember]
         private Board _givens;
-        [DataMember]
         private Board _work = new Board();
-        [DataMember]
         private PencilGrid _scratchPad = new PencilGrid();
-        [DataMember]
         Stack<List<History.IHistoryAction>> _undoList = new Stack<List<History.IHistoryAction>>();
-        [DataMember]
         Stack<List<History.IHistoryAction>> _redoList = new Stack<List<History.IHistoryAction>>();
 
         /// <summary>
@@ -190,7 +183,6 @@ namespace SudokuSharp.Examples
         /// <value>
         /// <c>true</c> if [automatic pencil mark clearing]; otherwise, <c>false</c>.
         /// </value>
-        [DataMember]
         public bool AutoPencilMarkClearing { get; set; }
     }
 }
