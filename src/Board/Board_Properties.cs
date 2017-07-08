@@ -88,7 +88,6 @@ namespace SudokuSharp
                 return false;
             }
         }
-
         private bool AreEnoughDigitsPresent
         {
             get
@@ -167,11 +166,11 @@ namespace SudokuSharp
             if (IsSolved) return true;
             if (!IsValid) return false;
 
-            for (int i = 0; i < 81; i++)
+            foreach (var idx in Location.All)
             {
-                if (GetCell(i) == 0)
+                if (data[idx] == 0)
                 { // Only test against empty cells
-                    var Candidates = Find.Candidates(i);
+                    var Candidates = Find.Candidates(idx);
 
                     if (Candidates.Count > 1)
                     { // Only test where there's more than one option
@@ -180,7 +179,7 @@ namespace SudokuSharp
 
                         foreach (int test in Candidates)
                         {
-                            working[i] = test;
+                            working[idx] = test;
 
                             if (working.Fill.Sequential() != null)
                             {
