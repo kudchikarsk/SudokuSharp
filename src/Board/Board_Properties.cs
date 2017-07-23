@@ -166,16 +166,27 @@ namespace SudokuSharp
             if (IsSolved) return true;
             if (!IsValid) return false;
 
+            var work = new Board(this);
+
+            var c = work.Find.AllSingles();
+            while (c.Count() > 0)
+            {
+                foreach (var single in c)
+                    work[single.Key] = single.Value;
+
+                c = work.Find.AllSingles();
+            }
+
             foreach (var idx in Location.All)
             {
-                if (data[idx] == 0)
+                if (work.data[idx] == 0)
                 { // Only test against empty cells
-                    var Candidates = Find.Candidates(idx);
+                    var Candidates = work.Find.Candidates(idx);
 
                     if (Candidates.Count > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
-                        var working = new Board(this);
+                        var working = new Board(work);
 
                         foreach (int test in Candidates)
                         {
