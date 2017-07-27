@@ -4,23 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*
- * On my laptop running 10x50:
-Timing the creation of 500 puzzles.
-50 puzzles created in 3.03 seconds for 17 puzzles per second.
-50 puzzles created in 3.03 seconds for 16 puzzles per second.
-50 puzzles created in 4.31 seconds for 12 puzzles per second.
-50 puzzles created in 5.49 seconds for 9 puzzles per second.
-50 puzzles created in 5.10 seconds for 10 puzzles per second.
-50 puzzles created in 5.56 seconds for 9 puzzles per second.
-50 puzzles created in 7.40 seconds for 7 puzzles per second.
-50 puzzles created in 4.92 seconds for 10 puzzles per second.
-50 puzzles created in 7.64 seconds for 7 puzzles per second.
-50 puzzles created in 4.78 seconds for 10 puzzles per second.
-500 puzzles created in 51.26 seconds for 10 puzzles per second.
-Press any key to continue . . .
-*/
-
 namespace PuzzleGeneration
 {
     class Program

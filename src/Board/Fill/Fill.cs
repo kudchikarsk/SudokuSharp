@@ -37,7 +37,7 @@ namespace SudokuSharp
                 _parent = Parent;
             }
 
-            // This class is not made public because it only checks for the presence of a digit in a row or column.
+            // This class is not made public because it only checks for the presence of a digit in a row or column or zone.
             // It does nothing to guard against duplicates, so is useless for the general board class.
             class ConstraintData
             {
