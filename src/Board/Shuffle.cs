@@ -22,5 +22,8 @@ namespace SudokuSharp
 
             return result;
         }
+
+        public Board Shuffle()
+            => Shuffle(new Random());
     }
 }
