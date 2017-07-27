@@ -25,6 +25,16 @@ namespace SudokuSharp
         {
             Array.Copy(src.data, this.data, 81);
         }
+
+        public Board(int Seed)
+        {
+            Fill.Randomized(Seed);
+        }
+
+        public Board(Random stream)
+        {
+            Fill.Randomized(stream);
+        }
         #endregion
 
         /// <summary>
