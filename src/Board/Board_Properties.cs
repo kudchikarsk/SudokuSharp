@@ -181,7 +181,7 @@ namespace SudokuSharp
                         {
                             working[idx] = test;
 
-                            if (working.Fill.Sequential() != null)
+                            if (working.FillSequential() != null)
                             {
                                 // We just found a solution. If we have already found a solution, then multiple exist and we may quit.
                                 if (foundSolution)

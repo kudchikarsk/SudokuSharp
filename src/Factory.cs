@@ -31,7 +31,7 @@ namespace SudokuSharp
 
             do
             {
-                work = new Board().Fill.Randomized(Stream);
+                work = new Board().FillRandom(Stream);
             } while (work == null);
 
             return work;

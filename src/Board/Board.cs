@@ -28,12 +28,12 @@ namespace SudokuSharp
 
         public Board(int Seed)
         {
-            Fill.Randomized(Seed);
+            FillRandom(new Random(Seed));
         }
 
         public Board(Random stream)
         {
-            Fill.Randomized(stream);
+            FillRandom(stream);
         }
         #endregion
 

@@ -135,7 +135,7 @@ namespace SudokuSharp
                         foreach (var item in possible)
                         {
                             result[loc] = item;
-                            if (result.Fill.Sequential() != null)
+                            if (result.FillSequential() != null)
                                 count++;
                         }
 
@@ -177,7 +177,7 @@ namespace SudokuSharp
                         foreach (var item in possible)
                         {
                             result[loc] = item;
-                            if (result.Fill.Sequential() != null)
+                            if (result.FillSequential() != null)
                                 count++;
                         }
 
