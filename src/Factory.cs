@@ -65,11 +65,11 @@ namespace SudokuSharp
             var work = new Board(Source);
 
             for (int i = 0; i < QuadsToCut; i++)
-                work = work.Cut.Quad(Stream);
+                work.CutQuad(Stream);
             for (int i = 0; i < PairsToCut; i++)
-                work = work.Cut.Pair(Stream);
+                work.CutPair(Stream);
             for (int i = 0; i < SinglesToCut; i++)
-                work = work.Cut.Single(Stream);
+                work.CutSingle(Stream);
 
             return work;
         }
