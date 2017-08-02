@@ -69,7 +69,7 @@ namespace SudokuSharp
 
                 foreach (var idx in Location.All)
                 {
-                    int value = GetCell(idx);
+                    int value = this[idx];
 
                     CountByRow[Location.Row(idx), value]++;
                     CountByColumn[Location.Column(idx), value]++;
@@ -175,13 +175,12 @@ namespace SudokuSharp
                     if (Candidates.Count() > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
-                        var working = new Board(this);
 
                         foreach (int test in Candidates)
                         {
-                            working[idx] = test;
+                            var work = Put(idx, test);
 
-                            if (working.FillSequential() != null)
+                            if (work.FillSequential() != null)
                             {
                                 // We just found a solution. If we have already found a solution, then multiple exist and we may quit.
                                 if (foundSolution)
@@ -210,7 +209,7 @@ namespace SudokuSharp
             var mustFill = work.FindAllSingles();
             while (mustFill.Any())
             {
-                work = work.Fill(mustFill);
+                work = work.Put(mustFill);
 
                 mustFill = work.FindAllSingles();
             }
@@ -236,10 +235,10 @@ namespace SudokuSharp
             int count = 0;
             foreach (var item in possible)
             {
-                work[idx] = item;
+                work.data[idx] = item;
                 count += CountRecursion(work, idx + 1);
             }
-            work[idx] = 0;
+            work.data[idx] = 0;
 
             return count;
         }
