@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Board\FillRandom.cs" />
+    <Compile Include="src\Board\FillSequential.cs" />
     <Compile Include="src\Board\Cut.cs" />
     <Compile Include="src\Board\Fill.cs" />
     <Compile Include="src\Board\Find.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Examples\History\Guess.cs" />
     <Compile Include="Examples\History\IHistoryAction.cs" />
     <Compile Include="Examples\History\PencilMarks.cs" />
+    <Compile Include="src\Board\Util.cs" />
     <Compile Include="src\Factory.cs" />
     <Compile Include="src\Location.cs" />
     <Compile Include="Examples\PencilGrid\PencilGrid.cs" />
