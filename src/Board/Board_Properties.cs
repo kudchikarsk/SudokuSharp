@@ -69,7 +69,7 @@ namespace SudokuSharp
 
                 foreach (var idx in Location.All)
                 {
-                    int value = GetCell(idx);
+                    int value = this[idx];
 
                     CountByRow[Location.Row(idx), value]++;
                     CountByColumn[Location.Column(idx), value]++;
