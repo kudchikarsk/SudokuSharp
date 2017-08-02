@@ -11,7 +11,8 @@ namespace SudokuSharp
         {
             var result = new Board(this);
             foreach (var item in ToFill)
-                result[item.loc] = item.val;
+                result.data[item.loc] = item.val;
+
             return result;
         }
     }
