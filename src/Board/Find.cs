@@ -19,26 +19,23 @@ namespace SudokuSharp
                    select loc;
         }
 
-        public List<int> FindCandidates(int Where)
+        public IEnumerable<int> FindCandidates(int Where)
         {
             if (this[Where] > 0)
                 return new List<int>();
 
-            bool[] present = new bool[10];
+            bool[] missing = new bool[10] { true, true, true, true, true, true, true, true, true, true };
             foreach (var loc in Location.Blocking[Where])
-                present[this[loc]] = true;
+                missing[this[loc]] = false;
 
-            List<int> result = new List<int>();
-            for (int i = 1; i < 10; i++)
-                if (!present[i])
-                    result.Add(i);
-
-            return result;
+            return from i in Enumerable.Range(1, 9)
+                   where missing[i]
+                   select i;
         }
 
-        public Dictionary<int, List<int>> FindAllCandidates()
+        public Dictionary<int, IEnumerable<int>> FindAllCandidates()
         {
-            Dictionary<int, List<int>> result = new Dictionary<int, List<int>>();
+            var result = new Dictionary<int, IEnumerable<int>>();
 
             foreach (var loc in FindEmptyLocations())
                 result[loc] = FindCandidates(loc);
