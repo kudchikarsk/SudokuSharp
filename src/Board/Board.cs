@@ -67,7 +67,6 @@ namespace SudokuSharp
         public int this[int where]
         {
             get { return data[where]; }
-            set { data[where] = value; }
         }
 
         private int[] GetRow(int Row)
