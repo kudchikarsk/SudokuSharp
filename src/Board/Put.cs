@@ -7,7 +7,7 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        public Board Fill(IEnumerable<(int loc, int val)> ToFill)
+        public Board Put(IEnumerable<(int loc, int val)> ToFill)
         {
             var result = new Board(this);
             foreach (var item in ToFill)

@@ -48,7 +48,7 @@
     <Compile Include="src\Board\FillRandom.cs" />
     <Compile Include="src\Board\FillSequential.cs" />
     <Compile Include="src\Board\Cut.cs" />
-    <Compile Include="src\Board\Fill.cs" />
+    <Compile Include="src\Board\Put.cs" />
     <Compile Include="src\Board\Find.cs" />
     <Compile Include="src\Board\FindSingles.cs" />
     <Compile Include="Examples\Cell.cs" />

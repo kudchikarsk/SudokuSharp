@@ -210,7 +210,7 @@ namespace SudokuSharp
             var mustFill = work.FindAllSingles();
             while (mustFill.Any())
             {
-                work = work.Fill(mustFill);
+                work = work.Put(mustFill);
 
                 mustFill = work.FindAllSingles();
             }
