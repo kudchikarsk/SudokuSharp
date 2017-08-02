@@ -5,53 +5,48 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        public IEnumerable<KeyValuePair<int, int>> FindNakedSingles()
+        public IEnumerable<(int loc, int val)> FindNakedSingles()
         {
             return FindNakedSingles(FindAllCandidates());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindNakedSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
+        public IEnumerable<(int loc, int val)> FindNakedSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
             return from item in Possibilities
                    where item.Value.Count() == 1
-                   select new KeyValuePair<int, int>(item.Key, item.Value.First());
+                   select (item.Key, item.Value.First());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindHiddenSingles()
+        public IEnumerable<(int loc, int val)> FindHiddenSingles()
         {
             return FindHiddenSingles(FindAllCandidates());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindHiddenSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
+        public IEnumerable<(int loc, int val)> FindHiddenSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
-            Dictionary<int, int> results = new Dictionary<int, int>();
-
-            for (int number = 1; number < 10; number++)
+            var candidates = new List<(int loc, int val)>();
+            foreach (var cell in FindEmptyLocations())
             {
-                var locationsForThisNumber = from item in Possibilities
-                                             where item.Value.Contains(number)
-                                             select item.Key;
-
-                for (int test = 0; test < 9; test++)
-                {
-                    var possible = from Index in locationsForThisNumber where Location.Zone(Index) == test select Index;
-                    if (possible.Count() == 1) results[possible.First()] = number;
-                    possible = from Index in locationsForThisNumber where Location.Row(Index) == test select Index;
-                    if (possible.Count() == 1) results[possible.First()] = number;
-                    possible = from Index in locationsForThisNumber where Location.Column(Index) == test select Index;
-                    if (possible.Count() == 1) results[possible.First()] = number;
-                }
+                foreach (var num in FindCandidates(cell))
+                    candidates.Add((cell, num));
             }
 
-            return results;
+            return from test in candidates
+                              where !(
+                                  from strike in candidates
+                                  where strike.val == test.val
+                                  where Location.Blocking[strike.loc].Contains(test.loc)
+                                  select strike
+                                  ).Any()
+                              select test;
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindAllSingles()
+        public IEnumerable<(int loc, int val)> FindAllSingles()
         {
             return FindHiddenSingles().Union(FindNakedSingles());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindAllSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
+        public IEnumerable<(int loc, int val)> FindAllSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
             return FindHiddenSingles(Possibilities).Union(FindNakedSingles(Possibilities));
         }
