@@ -172,7 +172,7 @@ namespace SudokuSharp
                 { // Only test against empty cells
                     var Candidates = FindCandidates(idx);
 
-                    if (Candidates.Count > 1)
+                    if (Candidates.Count() > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
                         var working = new Board(this);
@@ -231,7 +231,7 @@ namespace SudokuSharp
                 return CountRecursion(work, idx + 1);
 
             var possible = work.FindCandidates(idx);
-            if (possible.Count == 0)
+            if (possible.Count() == 0)
                 return 0;
 
             int count = 0;
