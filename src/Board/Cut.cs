@@ -23,13 +23,13 @@ namespace SudokuSharp
                 loc[3] = Location.FlipHorizontal(loc[1]);
 
                 for (int i = 0; i < 4; i++)
-                    work[loc[i]] = 0;
+                    work.data[loc[i]] = 0;
 
-                if (!work.ExistsUniqueSolution())
-                    work = new Board(this);
+                if (work.ExistsUniqueSolution())
+                    return work;
             }
 
-            return work;
+            return new Board(this);
         }
 
         public Board CutPair(Random stream)
@@ -43,16 +43,14 @@ namespace SudokuSharp
                 loc[0] = Filled[stream.Next(Filled.Count)];
                 loc[1] = (stream.Next(2) == 0) ? Location.FlipVertical(loc[0]) : Location.FlipHorizontal(loc[0]);
 
-                work[loc[0]] = 0;
-                work[loc[1]] = 0;
+                work.data[loc[0]] = 0;
+                work.data[loc[1]] = 0;
 
-                if (!ExistsUniqueSolution())
-                {
-                    work = new Board(this);
-                }
+                if (ExistsUniqueSolution())
+                    return work;
             }
 
-            return work;
+            return new Board(this);
         }
 
         public Board CutSingle(Random stream)
@@ -63,13 +61,13 @@ namespace SudokuSharp
             if (Filled.Count>0)
             {
                 var loc = Filled[stream.Next(Filled.Count)];
-                work[loc] = 0;
+                work.data[loc] = 0;
 
-                if (!ExistsUniqueSolution())
-                    work = new Board(this);
+                if (ExistsUniqueSolution())
+                    return work;
             }
 
-            return work;
+            return new Board(this);
         }
     }
 }
