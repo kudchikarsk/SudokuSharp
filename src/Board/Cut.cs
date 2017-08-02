@@ -12,7 +12,7 @@ namespace SudokuSharp
         {
             var work = new Board(this);
 
-            var Filled = work.Find.FilledLocations().ToList();
+            var Filled = work.FindFilledLocations().ToList();
 
             if (Filled.Count > 0)
             {
@@ -35,7 +35,7 @@ namespace SudokuSharp
         public Board CutPair(Random stream)
         {
             var work = new Board(this);
-            var Filled = work.Find.FilledLocations().ToList();
+            var Filled = work.FindFilledLocations().ToList();
 
             if (Filled.Count > 0)
             {
@@ -58,7 +58,7 @@ namespace SudokuSharp
         public Board CutSingle(Random stream)
         {
             var work = new Board(this);
-            var Filled = Find.FilledLocations().ToList();
+            var Filled = FindFilledLocations().ToList();
 
             if (Filled.Count>0)
             {

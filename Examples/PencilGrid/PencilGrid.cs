@@ -25,7 +25,7 @@ namespace SudokuSharp.Examples
         /// <param name="src">The <see cref="Board"/> to work off of.</param>
         public PencilGrid(Board src) : base()
         {
-            foreach (var item in src.Find.AllCandidates())
+            foreach (var item in src.FindAllCandidates())
                 foreach (var number in item.Value)
                     data[item.Key][number] = true;
         }

@@ -170,7 +170,7 @@ namespace SudokuSharp
             {
                 if (data[idx] == 0)
                 { // Only test against empty cells
-                    var Candidates = Find.Candidates(idx);
+                    var Candidates = FindCandidates(idx);
 
                     if (Candidates.Count > 1)
                     { // Only test where there's more than one option
@@ -207,13 +207,13 @@ namespace SudokuSharp
             Board work = new Board(this);
 
             // fill everything that has definite answers
-            var mustFill = work.Find.AllSingles().Union(work.Find.LockedCandidates());
+            var mustFill = work.FindAllSingles().Union(work.FindLockedCandidates());
             while (mustFill.Count() > 0)
             {
                 foreach (var item in mustFill)
                     work[item.Key] = item.Value;
 
-                mustFill = work.Find.LockedCandidates();
+                mustFill = work.FindLockedCandidates();
             }
 
             if (IsSolved)
@@ -230,7 +230,7 @@ namespace SudokuSharp
             if (work[idx] > 0)
                 return CountRecursion(work, idx + 1);
 
-            var possible = work.Find.Candidates(idx);
+            var possible = work.FindCandidates(idx);
             if (possible.Count == 0)
                 return 0;
 

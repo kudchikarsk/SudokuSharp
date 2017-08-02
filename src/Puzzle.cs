@@ -23,7 +23,7 @@ namespace SudokuSharp
                     Results.Add(new Board(scratch));
             } else
             {
-                foreach (var test in scratch.Find.Candidates(Mask[idx])) {
+                foreach (var test in scratch.FindCandidates(Mask[idx])) {
                     scratch[Mask[idx]] = test;
                     RecurseAll(Results, scratch, Mask, idx + 1);
                 }
