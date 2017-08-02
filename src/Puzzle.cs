@@ -24,10 +24,8 @@ namespace SudokuSharp
             } else
             {
                 foreach (var test in scratch.FindCandidates(Mask[idx])) {
-                    scratch[Mask[idx]] = test;
-                    RecurseAll(Results, scratch, Mask, idx + 1);
+                    RecurseAll(Results, scratch.Put(idx, test), Mask, idx + 1);
                 }
-                scratch[Mask[idx]] = 0;
             }
         }
     }
