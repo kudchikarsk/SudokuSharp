@@ -211,7 +211,7 @@ namespace SudokuSharp
             while (mustFill.Count() > 0)
             {
                 foreach (var item in mustFill)
-                    work[item.Key] = item.Value;
+                    work[item.loc] = item.val;
 
                 mustFill = work.FindLockedCandidates();
             }

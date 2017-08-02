@@ -7,7 +7,7 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        public IEnumerable<KeyValuePair<int, int>> FindLockedCandidates()
+        public IEnumerable<(int loc, int val)> FindLockedCandidates()
         {
             var possible = FindAllCandidates();
 
