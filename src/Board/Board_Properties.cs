@@ -207,13 +207,12 @@ namespace SudokuSharp
             Board work = new Board(this);
 
             // fill everything that has definite answers
-            var mustFill = work.FindAllSingles().Union(work.FindLockedCandidates());
-            while (mustFill.Count() > 0)
+            var mustFill = work.FindAllSingles();
+            while (mustFill.Any())
             {
-                foreach (var item in mustFill)
-                    work[item.loc] = item.val;
+                work = work.Fill(mustFill);
 
-                mustFill = work.FindLockedCandidates();
+                mustFill = work.FindAllSingles();
             }
 
             if (IsSolved)

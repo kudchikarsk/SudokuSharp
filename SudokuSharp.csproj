@@ -50,7 +50,6 @@
     <Compile Include="src\Board\Cut.cs" />
     <Compile Include="src\Board\Fill.cs" />
     <Compile Include="src\Board\Find.cs" />
-    <Compile Include="src\Board\FindLockedCandidates.cs" />
     <Compile Include="src\Board\FindSingles.cs" />
     <Compile Include="Examples\Cell.cs" />
     <Compile Include="src\Board\Board_Properties.cs" />
