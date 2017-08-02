@@ -34,7 +34,7 @@ namespace SudokuSharp
             {
                 if (!data.InRow[test, Location.Row(Index)] && !data.InColumn[test, Location.Column(Index)] && !data.InZone[test, Location.Zone(Index)])
                 {
-                    work[Index] = test;
+                    work.data[Index] = test;
                     data.InRow[test, Location.Row(Index)] = data.InColumn[test, Location.Column(Index)] = data.InZone[test, Location.Zone(Index)] = true;
                     if (RandomRecursion(work, data, Digits, Index + 1))
                         return true;
@@ -42,7 +42,7 @@ namespace SudokuSharp
                 }
             }
 
-            work[Index] = 0;
+            work.data[Index] = 0;
             return false;
         }
     }
