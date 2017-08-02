@@ -175,13 +175,12 @@ namespace SudokuSharp
                     if (Candidates.Count() > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
-                        var working = new Board(this);
 
                         foreach (int test in Candidates)
                         {
-                            working[idx] = test;
+                            var work = Put(idx, test);
 
-                            if (working.FillSequential() != null)
+                            if (work.FillSequential() != null)
                             {
                                 // We just found a solution. If we have already found a solution, then multiple exist and we may quit.
                                 if (foundSolution)
