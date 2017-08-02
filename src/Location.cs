@@ -13,19 +13,19 @@ namespace SudokuSharp
     {
         public static int Index(int Column, int Row) { return (9 * Row) + Column; }
 
-        public static int Row(int Index) { return (Index / 9); }
+        //        public static int Row(int Index) { return (Index / 9); }
 
-        public static int Column(int Index) { return (Index % 9); }
+        //        public static int Column(int Index) { return (Index % 9); }
 
-        public static int Zone(int Index) { return Row(Index) - (Row(Index) % 3) + (Column(Index) / 3); }
+        //       public static int Zone(int Index) { return Row(Index) - (Row(Index) % 3) + (Column(Index) / 3); }
 
-        public static int FlipHorizontal(int Origin) { return Index(8 - Column(Origin), Row(Origin)); }
+        public static int FlipHorizontal(int Origin) { return Index(8 - Column[Origin], Row[Origin]); }
 
-        public static int FlipVertical(int Origin) { return Index(Column(Origin), 8 - Row(Origin)); }
+        public static int FlipVertical(int Origin) { return Index(Column[Origin], 8 - Row[Origin]); }
 
         public bool IsBlockedBy(int First, int Second)
         {
-            return (Row(First) == Row(Second)) || (Column(First) == Column(Second)) || (Zone(First) == Zone(Second));
+            return Blocking[First].Contains(Second);
         }
 
         public static ReadOnlyCollection<int> All = new ReadOnlyCollection<int>(new int[81]
@@ -126,5 +126,9 @@ namespace SudokuSharp
     new ReadOnlyCollection<int>(new int[] {8,17,26,35,44,53,60,61,62,69,70,71,72,73,74,75,76,77,78,79})
     }
             );
+
+        public static ReadOnlyCollection<int> Row = new ReadOnlyCollection<int>(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8 });
+        public static ReadOnlyCollection<int> Column = new ReadOnlyCollection<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8 });
+        public static ReadOnlyCollection<int> Zone = new ReadOnlyCollection<int>(new int[] { 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8 });
     }
 }
