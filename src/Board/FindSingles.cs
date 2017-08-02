@@ -10,10 +10,10 @@ namespace SudokuSharp
             return FindNakedSingles(FindAllCandidates());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindNakedSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
+        public IEnumerable<KeyValuePair<int, int>> FindNakedSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
             return from item in Possibilities
-                   where item.Value.Count == 1
+                   where item.Value.Count() == 1
                    select new KeyValuePair<int, int>(item.Key, item.Value.First());
         }
 
@@ -22,7 +22,7 @@ namespace SudokuSharp
             return FindHiddenSingles(FindAllCandidates());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindHiddenSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
+        public IEnumerable<KeyValuePair<int, int>> FindHiddenSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
             Dictionary<int, int> results = new Dictionary<int, int>();
 
@@ -51,7 +51,7 @@ namespace SudokuSharp
             return FindHiddenSingles().Union(FindNakedSingles());
         }
 
-        public IEnumerable<KeyValuePair<int, int>> FindAllSingles(IEnumerable<KeyValuePair<int, List<int>>> Possibilities)
+        public IEnumerable<KeyValuePair<int, int>> FindAllSingles(IEnumerable<KeyValuePair<int, IEnumerable<int>>> Possibilities)
         {
             return FindHiddenSingles(Possibilities).Union(FindNakedSingles(Possibilities));
         }
