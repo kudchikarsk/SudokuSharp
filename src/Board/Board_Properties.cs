@@ -235,10 +235,10 @@ namespace SudokuSharp
             int count = 0;
             foreach (var item in possible)
             {
-                work[idx] = item;
+                work.data[idx] = item;
                 count += CountRecursion(work, idx + 1);
             }
-            work[idx] = 0;
+            work.data[idx] = 0;
 
             return count;
         }
