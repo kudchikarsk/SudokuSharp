@@ -9,7 +9,7 @@ namespace SudokuSharp
     /// The Location class is a reference to a specific cell on a Sudoku board.
     /// It is internally represented as an integer for performance, but contains many useful methods
     /// </summary>
-    public class Location
+    public static class Location
     {
         public static int Index(int Column, int Row) { return (9 * Row) + Column; }
 
@@ -23,7 +23,7 @@ namespace SudokuSharp
 
         public static int FlipVertical(int Origin) { return Index(Column[Origin], 8 - Row[Origin]); }
 
-        public bool IsBlockedBy(int First, int Second)
+        public static bool IsBlockedBy(int First, int Second)
         {
             return Blocking[First].Contains(Second);
         }
