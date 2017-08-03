@@ -10,8 +10,8 @@ namespace PuzzleGeneration
     {
         static void Main(string[] args)
         {
-            int Batches = 10;
-            int BatchSize = 100;
+            int Batches = 5;
+            int BatchSize = 500;
 
             Console.WriteLine("Timing the creation of {0:N0} puzzles.", Batches*BatchSize);
             var rnd = new Random(0);

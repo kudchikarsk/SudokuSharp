@@ -73,7 +73,7 @@ namespace SudokuSharp
 
                     CountByRow[Location.Row[idx], value]++;
                     CountByColumn[Location.Column[idx], value]++;
-                    CountByZone[Location.Zone[idx], value]++;
+                    CountByZone[Location.Zone(idx), value]++;
                 }
 
                 for (int area = 0; area < 9; area++)

@@ -32,13 +32,13 @@ namespace SudokuSharp
 
             foreach (int test in Digits)
             {
-                if (!data.InRow[test, Location.Row[Index]] && !data.InColumn[test, Location.Column[Index]] && !data.InZone[test, Location.Zone[Index]])
+                if (!data.InRow[test, Location.Row[Index]] && !data.InColumn[test, Location.Column[Index]] && !data.InZone[test, Location.Zone(Index)])
                 {
                     work.data[Index] = test;
-                    data.InRow[test, Location.Row[Index]] = data.InColumn[test, Location.Column[Index]] = data.InZone[test, Location.Zone[Index]] = true;
+                    data.InRow[test, Location.Row[Index]] = data.InColumn[test, Location.Column[Index]] = data.InZone[test, Location.Zone(Index)] = true;
                     if (RandomRecursion(work, data, Digits, Index + 1))
                         return true;
-                    data.InRow[test, Location.Row[Index]] = data.InColumn[test, Location.Column[Index]] = data.InZone[test, Location.Zone[Index]] = false;
+                    data.InRow[test, Location.Row[Index]] = data.InColumn[test, Location.Column[Index]] = data.InZone[test, Location.Zone(Index)] = false;
                 }
             }
 

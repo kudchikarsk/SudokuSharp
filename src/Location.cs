@@ -129,6 +129,95 @@ namespace SudokuSharp
 
         public static ReadOnlyCollection<int> Row = new ReadOnlyCollection<int>(new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8 });
         public static ReadOnlyCollection<int> Column = new ReadOnlyCollection<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 2, 3, 4, 5, 6, 7, 8 });
-        public static ReadOnlyCollection<int> Zone = new ReadOnlyCollection<int>(new int[] { 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8 });
+//        public static ReadOnlyCollection<int> Zone = new ReadOnlyCollection<int>(new int[] { 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8, 6, 6, 6, 7, 7, 7, 8, 8, 8 });
+
+        public static int Zone(int loc)
+        {
+            switch(loc)
+            {
+                case 0: return 0; break;
+                case 1: return 0; break;
+                case 2: return 0; break;
+                case 3: return 1; break;
+                case 4: return 1; break;
+                case 5: return 1; break;
+                case 6: return 2; break;
+                case 7: return 2; break;
+                case 8: return 2; break;
+                case 9: return 0; break;
+                case 10: return 0; break;
+                case 11: return 0; break;
+                case 12: return 1; break;
+                case 13: return 1; break;
+                case 14: return 1; break;
+                case 15: return 2; break;
+                case 16: return 2; break;
+                case 17: return 2; break;
+                case 18: return 0; break;
+                case 19: return 0; break;
+                case 20: return 0; break;
+                case 21: return 1; break;
+                case 22: return 1; break;
+                case 23: return 1; break;
+                case 24: return 2; break;
+                case 25: return 2; break;
+                case 26: return 2; break;
+                case 27: return 3; break;
+                case 28: return 3; break;
+                case 29: return 3; break;
+                case 30: return 4; break;
+                case 31: return 4; break;
+                case 32: return 4; break;
+                case 33: return 5; break;
+                case 34: return 5; break;
+                case 35: return 5; break;
+                case 36: return 3; break;
+                case 37: return 3; break;
+                case 38: return 3; break;
+                case 39: return 4; break;
+                case 40: return 4; break;
+                case 41: return 4; break;
+                case 42: return 5; break;
+                case 43: return 5; break;
+                case 44: return 5; break;
+                case 45: return 3; break;
+                case 46: return 3; break;
+                case 47: return 3; break;
+                case 48: return 4; break;
+                case 49: return 4; break;
+                case 50: return 4; break;
+                case 51: return 5; break;
+                case 52: return 5; break;
+                case 53: return 5; break;
+                case 54: return 6; break;
+                case 55: return 6; break;
+                case 56: return 6; break;
+                case 57: return 7; break;
+                case 58: return 7; break;
+                case 59: return 7; break;
+                case 60: return 8; break;
+                case 61: return 8; break;
+                case 62: return 8; break;
+                case 63: return 6; break;
+                case 64: return 6; break;
+                case 65: return 6; break;
+                case 66: return 7; break;
+                case 67: return 7; break;
+                case 68: return 7; break;
+                case 69: return 8; break;
+                case 70: return 8; break;
+                case 71: return 8; break;
+                case 72: return 6; break;
+                case 73: return 6; break;
+                case 74: return 6; break;
+                case 75: return 7; break;
+                case 76: return 7; break;
+                case 77: return 7; break;
+                case 78: return 8; break;
+                case 79: return 8; break;
+                case 80: return 8; break;
+            }
+            throw new ArgumentOutOfRangeException("loc", loc, "Location value must be between 0 and 80 inclusive");
+        }
     }
 }

@@ -29,13 +29,13 @@ namespace SudokuSharp
 
             for (int i = 1; i < 10; i++)
             {
-                if (!data.InRow[i, Location.Row[Index]] && !data.InColumn[i, Location.Column[Index]] && !data.InZone[i, Location.Zone[Index]])
+                if (!data.InRow[i, Location.Row[Index]] && !data.InColumn[i, Location.Column[Index]] && !data.InZone[i, Location.Zone(Index)])
                 {
                     work.data[Index] = i;
-                    data.InRow[i, Location.Row[Index]] = data.InColumn[i, Location.Column[Index]] = data.InZone[i, Location.Zone[Index]] = true;
+                    data.InRow[i, Location.Row[Index]] = data.InColumn[i, Location.Column[Index]] = data.InZone[i, Location.Zone(Index)] = true;
                     if (SequentialRecursion(work, data, Index + 1))
                         return true;
-                    data.InRow[i, Location.Row[Index]] = data.InColumn[i, Location.Column[Index]] = data.InZone[i, Location.Zone[Index]] = false;
+                    data.InRow[i, Location.Row[Index]] = data.InColumn[i, Location.Column[Index]] = data.InZone[i, Location.Zone(Index)] = false;
                 }
             }
 
