@@ -13,8 +13,8 @@ namespace SudokuSharp
             {
                 foreach (var loc in Location.All)
                 {
-                    InRow[Src[loc], Location.Row[loc]] =
-                        InColumn[Src[loc], Location.Column[loc]] =
+                    InRow[Src[loc], Location.Row(loc)] =
+                        InColumn[Src[loc], Location.Column(loc)] =
                         InZone[Src[loc], Location.Zone(loc)] = true;
                 }
             }

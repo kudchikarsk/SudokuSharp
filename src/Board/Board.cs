@@ -97,9 +97,9 @@ namespace SudokuSharp
             foreach (var loc in Location.All)
             {
                 sb.Append((this[loc] > 0) ? this[loc].ToString() : "-");
-                if (Location.Column[loc] % 3 == 2) sb.Append(" ");
-                if (Location.Column[loc] == 8) sb.Append("\n");
-                if ((Location.Column[loc] == 8) && (Location.Row[loc] % 3 == 2)) sb.Append("\n");
+                if (Location.Column(loc) % 3 == 2) sb.Append(" ");
+                if (Location.Column(loc) == 8) sb.Append("\n");
+                if ((Location.Column(loc) == 8) && (Location.Row(loc) % 3 == 2)) sb.Append("\n");
             }
             return sb.ToString();
         }
