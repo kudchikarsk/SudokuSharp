@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SudokuSharp
 {
-    class Puzzle
+    public static class Puzzle
     {
         public static List<Board> CreateAll(List<int> Mask)
         {
