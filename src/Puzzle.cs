@@ -8,6 +8,15 @@ namespace SudokuSharp
 {
     public static class Puzzle
     {
+        public static List<Board> CreateAll(bool[] Mask)
+        {
+            var newMask = from loc in Location.All
+                          where Mask[loc]
+                          select loc;
+
+            return CreateAll(newMask.ToList());
+        }
+
         public static List<Board> CreateAll(List<int> Mask)
         {
             var found = new List<Board>();
