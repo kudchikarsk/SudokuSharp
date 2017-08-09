@@ -222,7 +222,7 @@ namespace SudokuSharp
 
         private static int CountRecursion(Board work, int idx)
         {
-            if (idx == 81) // using int instead of Location because Location CAN'T have a value of 81
+            if (idx == 81)
                 return 1;
 
             if (work[idx] > 0)
