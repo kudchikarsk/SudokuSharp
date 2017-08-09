@@ -9,6 +9,9 @@ namespace SudokuSharp
     {
         class Digits
         {
+            public Digits()
+            { }
+
             public Digits(Board Src)
             {
                 foreach (var loc in Location.All)
