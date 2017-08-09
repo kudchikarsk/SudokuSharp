@@ -16,17 +16,17 @@ namespace SudokuSharp
             public Constraints(Board Src)
             {
                 foreach (var loc in Location.All)
-                {
-                    InRow[Src[loc], Location.Row(loc)] =
+                    InPuzzle[Src[loc]] =
+                        InRow[Src[loc], Location.Row(loc)] =
                         InColumn[Src[loc], Location.Column(loc)] =
                         InZone[Src[loc], Location.Zone(loc)] = true;
-                }
             }
 
             public Constraints(IEnumerable<(int loc, int val)> LocationsFilled)
             {
                 foreach (var item in LocationsFilled)
-                    InRow[item.val, Location.Row(item.loc)] =
+                    InPuzzle[item.val] =
+                        InRow[item.val, Location.Row(item.loc)] =
                         InColumn[item.val, Location.Column(item.loc)] =
                         InZone[item.val, Location.Zone(item.loc)] = true;
             }
@@ -40,6 +40,7 @@ namespace SudokuSharp
                 return result;
             }
 
+            public bool[] InPuzzle = new bool[10];
             public bool[,] InRow = new bool[10, 9];
             public bool[,] InColumn = new bool[10, 9];
             public bool[,] InZone = new bool[10, 9];
