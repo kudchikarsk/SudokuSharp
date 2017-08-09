@@ -23,7 +23,7 @@ namespace SolutionCreation
                 var bStart = DateTime.Now;
                 for (int j=0; j< BatchSize; j++)
                 {
-                    SudokuSharp.Factory.Solution(rnd);
+                    new SudokuSharp.Board(rnd);
                 }
                 elapsed = DateTime.Now - bStart;
                 Console.WriteLine("{0:N0} boards created in {1:0.00} seconds for {2:N0} boards per second.", BatchSize, elapsed.TotalSeconds, BatchSize / elapsed.TotalSeconds);
