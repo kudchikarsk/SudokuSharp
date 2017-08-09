@@ -214,7 +214,7 @@ namespace SudokuSharp
                 mustFill = work.FindAllSingles();
             }
 
-            if (IsSolved)
+            if (work.IsSolved)
                 return 1;
 
             return CountRecursion(work, 0);
