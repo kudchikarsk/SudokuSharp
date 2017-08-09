@@ -31,7 +31,7 @@ namespace SudokuSharp
                         InZone[item.val, Location.Zone(item.loc)] = true;
             }
 
-            IEnumerable<int> Possibilities(int loc)
+            public IEnumerable<int> Possibilities(int loc)
             {
                 int r = Location.Row(loc), c = Location.Column(loc), z = Location.Zone(loc);
 
