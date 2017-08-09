@@ -8,12 +8,12 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        class Digits
+        class Constraints
         {
-            public Digits()
+            public Constraints()
             { }
 
-            public Digits(Board Src)
+            public Constraints(Board Src)
             {
                 foreach (var loc in Location.All)
                 {
@@ -23,7 +23,7 @@ namespace SudokuSharp
                 }
             }
 
-            public Digits(IEnumerable<(int loc, int val)> LocationsFilled)
+            public Constraints(IEnumerable<(int loc, int val)> LocationsFilled)
             {
                 foreach (var item in LocationsFilled)
                     InRow[item.val, Location.Row(item.loc)] =
