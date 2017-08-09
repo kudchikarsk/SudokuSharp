@@ -31,15 +31,13 @@ namespace SudokuSharp
                         InZone[item.val, Location.Zone(item.loc)] = true;
             }
 
-            public IEnumerable<int> Possibilities(int loc)
+            public bool[] AtLocation(int where)
             {
-                int r = Location.Row(loc), c = Location.Column(loc), z = Location.Zone(loc);
+                var result = new bool[10];
+                for (int i = 0; i < 10; i++)
+                    result[i] = InRow[i, Location.Row(where)] || InColumn[i, Location.Column(where)] || InZone[i, Location.Zone(where)];
 
-                return from test in Enumerable.Range(1, 9)
-                       where !InRow[test, r]
-                       where !InColumn[test, c]
-                       where !InZone[test, z]
-                       select test;
+                return result;
             }
 
             public bool[,] InRow = new bool[10, 9];
