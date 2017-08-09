@@ -10,27 +10,25 @@ namespace PuzzleGeneration
     {
         static void Main(string[] args)
         {
-            int Batches = 5;
-            int BatchSize = 500;
+            var mask = new List<int> { 0, 10, 20, 30, 40, 50, 60, 70, 80, 4, 14, 24, 34, 44, 36, 46, 56, 66, 76 };
+            var valuesToFill = from loc in mask
+                               select (loc, 1);
+            var maskedBoard = new SudokuSharp.Board().Put(valuesToFill);
 
-            Console.WriteLine("Timing the creation of {0:N0} puzzles.", Batches*BatchSize);
-            var rnd = new Random(0);
-            var brd = SudokuSharp.Factory.Solution(rnd);
+            Console.WriteLine("Creating a puzzle to fill:");
+            Console.WriteLine(maskedBoard);
+            Console.WriteLine();
 
-            TimeSpan elapsed;
-            var start = DateTime.Now;
-            for (int i = 0; i < Batches; i++)
-            {
-                var bStart = DateTime.Now;
-                for (int j = 0; j < BatchSize; j++)
-                {
-                    SudokuSharp.Factory.Puzzle(brd, rnd, 10, 10, 10);
-                }
-                elapsed = DateTime.Now - bStart;
-                Console.WriteLine("{0:N0} puzzles created in {1:0.00} seconds for {2:N0} puzzles per second.", BatchSize, elapsed.TotalSeconds, BatchSize / elapsed.TotalSeconds);
-            }
-            elapsed = DateTime.Now - start;
-            Console.WriteLine("{0:N0} puzzles created in {1:0.00} seconds for {2:N0} puzzles per second.", BatchSize * Batches, elapsed.TotalSeconds, (BatchSize*Batches) / elapsed.TotalSeconds);
+            var test = SudokuSharp.Board.CreatePuzzle(mask);
+
+            Console.WriteLine("The generated puzzle:");
+            Console.WriteLine(test);
+            Console.WriteLine();
+
+            Console.WriteLine("Is puzzle valid: {0}", test.IsValid);
+            Console.WriteLine("Does a single solution exist: {0}", test.ExistsUniqueSolution());
+            Console.WriteLine("Number of solutions: {0}", test.CountSolutions());
+
         }
     }
 }
