@@ -12,7 +12,7 @@ namespace SudokuSharp
         {
             public Board First()
             {
-                var success = Recursion(0);
+                var success = StepDown(0);
                 if (success)
                     return ToBoard();
 
@@ -21,7 +21,10 @@ namespace SudokuSharp
 
             public Board Next()
             {
+                if (StepDown(clueValues.Length - 1))
+                    return ToBoard();
 
+                return null;
             }
 
             private Board ToBoard()
@@ -33,7 +36,24 @@ namespace SudokuSharp
                 return new Board().Put(toPut);
             }
 
-            private bool Recursion(int idx)
+            private bool StepUp(int idx)
+            {
+                if (idx < 0)
+                    return false;
+
+                var possible = Candidates(idx).Where(x => x > clueValues[idx]);
+
+                foreach (var test in possible)
+                {
+                    clueValues[idx] = test;
+                    if (StepDown(idx + 1))
+                        return true;
+                }
+                clueValues[idx] = 0;
+                return StepUp(idx - 1);
+            }
+
+            private bool StepDown(int idx)
             {
                 if (idx == clueLocations.Length)
                     return true;
@@ -43,12 +63,14 @@ namespace SudokuSharp
                 foreach (var test in possible)
                 {
                     clueValues[idx] = test;
-                    if (Recursion(idx + 1))
+                    if (StepDown(idx + 1))
                         return true;
                 }
                 clueValues[idx] = 0;
                 return false;
             }
+
+
         }
     }
 }
