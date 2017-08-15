@@ -12,10 +12,41 @@ namespace SudokuSharp
         {
             public Board First()
             {
+                var success = ConstructorRecursion(0);
+                if (success)
+                    return ToBoard();
+
+                return null;
             }
 
             public Board Next()
             {
+            }
+
+            private Board ToBoard()
+            {
+                var toPut = new List<(int loc, int val)>();
+                for (int i = 0; i < clueLocations.Length; i++)
+                    toPut.Add((clueLocations[i], clueValues[i]));
+
+                return new Board().Put(toPut);
+            }
+
+            private bool ConstructorRecursion(int idx)
+            {
+                if (idx == clueLocations.Length)
+                    return true;
+
+                var possible = Candidates(idx);
+
+                foreach (var test in possible)
+                {
+                    clueValues[idx] = test;
+                    if (ConstructorRecursion(idx + 1))
+                        return true;
+                }
+                clueValues[idx] = 0;
+                return false;
             }
         }
     }

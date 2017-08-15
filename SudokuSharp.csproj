@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Board\Factories\Methods.cs" />
     <Compile Include="src\Board\Factories\PuzzleGenerator.cs" />
     <Compile Include="src\Board\Factory.cs" />
     <Compile Include="src\Board\FillRandom.cs" />
