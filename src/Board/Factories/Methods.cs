@@ -12,7 +12,7 @@ namespace SudokuSharp
         {
             public Board First()
             {
-                var success = ConstructorRecursion(0);
+                var success = Recursion(0);
                 if (success)
                     return ToBoard();
 
@@ -21,6 +21,7 @@ namespace SudokuSharp
 
             public Board Next()
             {
+
             }
 
             private Board ToBoard()
@@ -32,7 +33,7 @@ namespace SudokuSharp
                 return new Board().Put(toPut);
             }
 
-            private bool ConstructorRecursion(int idx)
+            private bool Recursion(int idx)
             {
                 if (idx == clueLocations.Length)
                     return true;
@@ -42,7 +43,7 @@ namespace SudokuSharp
                 foreach (var test in possible)
                 {
                     clueValues[idx] = test;
-                    if (ConstructorRecursion(idx + 1))
+                    if (Recursion(idx + 1))
                         return true;
                 }
                 clueValues[idx] = 0;
