@@ -12,8 +12,7 @@ namespace SudokuSharp
         {
             public Board First()
             {
-                var success = StepDown(0);
-                if (success)
+                if (StepDown(0))
                     return ToBoard();
 
                 return null;
