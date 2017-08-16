@@ -20,7 +20,7 @@ namespace SudokuSharp
 
             public Board Next()
             {
-                if (StepDown(clueValues.Length - 1))
+                if (StepUp(clueValues.Length - 1))
                     return ToBoard();
 
                 return null;
