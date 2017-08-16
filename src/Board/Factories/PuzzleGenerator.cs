@@ -69,7 +69,8 @@ namespace SudokuSharp
                     if (digitsUsed[i] && !digitsBlocking[i])
                         result.Add(i);
                 }
-                result.Add(firstUnused);
+                if (firstUnused < 10)
+                    result.Add(firstUnused);
 
                 return result;
             }
