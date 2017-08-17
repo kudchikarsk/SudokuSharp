@@ -18,7 +18,7 @@ namespace PuzzleGeneration
                                select (loc, 1);
             var maskedBoard = new SudokuSharp.Board().Put(valuesToFill);
 
-            var generator = new SudokuSharp.Board.PuzzleGenerator(mask);
+            var generator = new SudokuSharp.Board.MaskedGenerator(mask);
             var b = generator.First();
 
             int tGenerated = 0;

@@ -5,7 +5,7 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        public partial class PuzzleGenerator
+        public partial class MaskedGenerator
         {
             public Board First()
             {

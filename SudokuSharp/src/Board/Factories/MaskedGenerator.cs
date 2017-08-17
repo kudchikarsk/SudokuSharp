@@ -5,9 +5,9 @@ namespace SudokuSharp
 {
     public partial class Board
     {
-        public partial class PuzzleGenerator
+        public partial class MaskedGenerator
         {
-            public PuzzleGenerator(List<int> Clues)
+            public MaskedGenerator(List<int> Clues)
             {
                 clueLocations = Clues.OrderBy(x => x).ToArray();
                 clueValues = new int[Clues.Count];
@@ -15,7 +15,7 @@ namespace SudokuSharp
                 SetupBlocking();
             }
 
-            public PuzzleGenerator(bool[] Mask)
+            public MaskedGenerator(bool[] Mask)
             {
                 clueLocations = Mask.Where(x => x).Select((x, i) => i).OrderBy(x => x).ToArray();
                 clueValues = new int[clueLocations.Length];
