@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace SudokuSharp
 {
@@ -18,7 +16,7 @@ namespace SudokuSharp
 
             var result = new Board();
             foreach (var loc in Location.All)
-                result[loc] = key[this[loc]];
+                result.data[loc] = key[this[loc]];
 
             return result;
         }

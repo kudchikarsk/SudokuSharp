@@ -168,38 +168,28 @@ namespace SudokuSharp
 
             var work = new Board(this);
 
-            var c = work.Find.AllSingles();
+            var c = work.FindAllSingles();
             while (c.Count() > 0)
             {
-                foreach (var single in c)
-                    work[single.Key] = single.Value;
-
-                c = work.Find.AllSingles();
+                work = work.Put(c);
+                c = work.FindAllSingles();
             }
 
             foreach (var idx in Location.All)
             {
                 if (work.data[idx] == 0)
                 { // Only test against empty cells
-<<<<<<< HEAD
-                    var Candidates = work.Find.Candidates(idx);
-=======
-                    var Candidates = FindCandidates(idx);
->>>>>>> Rewrite_API
+                    var Candidates = work.FindCandidates(idx);
 
                     if (Candidates.Count() > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
-<<<<<<< HEAD
-                        var working = new Board(work);
-=======
->>>>>>> Rewrite_API
 
                         foreach (int test in Candidates)
                         {
-                            var work = Put(idx, test);
+                            var working = work.Put(idx, test);
 
-                            if (work.FillSequential() != null)
+                            if (working.FillSequential() != null)
                             {
                                 // We just found a solution. If we have already found a solution, then multiple exist and we may quit.
                                 if (foundSolution)

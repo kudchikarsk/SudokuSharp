@@ -21,7 +21,7 @@ namespace Shuffling
             for (int i = 0; i < Batches; i++)
             {
                 var bStart = DateTime.Now;
-                var src = SudokuSharp.Factory.Solution(rnd);
+                var src = new SudokuSharp.Board(rnd);
                 for (int j = 0; j < BatchSize; j++)
                 {
                     var shuffled = src.Shuffle(rnd);
