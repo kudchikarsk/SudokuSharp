@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="src\Board\Factories\Methods.cs" />
+    <Compile Remove="src\Board\Factories\SimplePuzzleGenerator.cs" />
   </ItemGroup>
 
   <ItemGroup>

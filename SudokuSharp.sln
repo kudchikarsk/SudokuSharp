@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCreation", "Tests\SolutionCreation\SolutionCreation.csproj", "{981F9BA7-55AC-47C3-9426-8ACB32C8E86A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleGeneration", "Tests\PuzzleGeneration\PuzzleGeneration.csproj", "{9F8FB1DE-C0F5-49F3-829C-9F7EA0EAF1FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedPuzzleGeneration", "Tests\PuzzleGeneration\MaskedPuzzleGeneration.csproj", "{9F8FB1DE-C0F5-49F3-829C-9F7EA0EAF1FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreCompute", "Util\PreCompute\PreCompute.csproj", "{1FE0CF95-FE5E-43F7-8953-CD6A577B4B55}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Timing Tests", "Timing Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{DD1CE473-0768-437C-9D2D-91B538C98457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSharp", "SudokuSharp\SudokuSharp.csproj", "{1849F561-5AD0-4A20-890A-F44192779052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSharp", "SudokuSharp\SudokuSharp.csproj", "{1849F561-5AD0-4A20-890A-F44192779052}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuffling", "Tests\Shuffling\Shuffling.csproj", "{F7655DD7-089B-4B2E-8D52-7DD1C4446E75}"
 EndProject
