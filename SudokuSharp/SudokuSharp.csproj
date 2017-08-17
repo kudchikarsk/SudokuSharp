@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="src\Board\Factories\Methods.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
