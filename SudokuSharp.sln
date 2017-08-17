@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSharp", "D:\Source\Repos\SudokuSharp\SudokuSharp.csproj", "{82B46D96-454C-4801-A097-08DFF29AA7D3}"
 EndProject
@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionCreation", "Tests\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleGeneration", "Tests\PuzzleGeneration\PuzzleGeneration.csproj", "{9F8FB1DE-C0F5-49F3-829C-9F7EA0EAF1FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreCompute", "Util\PreCompute\PreCompute.csproj", "{1FE0CF95-FE5E-43F7-8953-CD6A577B4B55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreCompute", "Util\PreCompute\PreCompute.csproj", "{1FE0CF95-FE5E-43F7-8953-CD6A577B4B55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Timing Tests", "Timing Tests", "{2B6E0325-2F5A-47CC-86CB-CA01A178B134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{981F9BA7-55AC-47C3-9426-8ACB32C8E86A} = {2B6E0325-2F5A-47CC-86CB-CA01A178B134}
+		{9F8FB1DE-C0F5-49F3-829C-9F7EA0EAF1FC} = {2B6E0325-2F5A-47CC-86CB-CA01A178B134}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {163E51EC-8486-476E-8177-39464947FD70}
 	EndGlobalSection
 EndGlobal

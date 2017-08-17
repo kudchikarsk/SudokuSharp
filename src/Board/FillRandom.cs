@@ -10,7 +10,7 @@ namespace SudokuSharp
         public Board FillRandom(Random Stream)
         {
             var result = new Board(this);
-            Digits data = new Digits(result);
+            Constraints data = new Constraints(result);
 
             var digits = new List<int>();
             for (int i = 1; i < 10; i++)
@@ -22,7 +22,7 @@ namespace SudokuSharp
             return null;
         }
 
-        private static bool RandomRecursion(Board work, Digits data, List<int> Digits, int Index)
+        private static bool RandomRecursion(Board work, Constraints data, List<int> Digits, int Index)
         {
             if (Index == 81)
                 return true;

@@ -11,7 +11,7 @@ namespace SudokuSharp
         {
             var work = new Board(this);
 
-            Digits data = new Digits(work);
+            Constraints data = new Constraints(work);
 
             if (SequentialRecursion(work, data, 0))
                 return work;
@@ -19,7 +19,7 @@ namespace SudokuSharp
             return null;
         }
 
-        private static bool SequentialRecursion(Board work, Digits data, int Index)
+        private static bool SequentialRecursion(Board work, Constraints data, int Index)
         {
             if (Index == 81)
                 return true;
