@@ -25,20 +25,17 @@ namespace SudokuSharp
         {
             Array.Copy(src.data, this.data, 81);
         }
-        #endregion
 
-        /// <summary>
-        /// Gets the value of a given cell.
-        /// </summary>
-        /// <param name="Where">The cell to check; may be provided as either an instance of <see cref="Location"/> or the integer index of the cell.</param>
-        /// <returns></returns>
-        public int GetCell(int Where) { return this[Where]; }
-        /// <summary>
-        /// Fills a cell in.
-        /// </summary>
-        /// <param name="Where">The <see cref="Location"/> of the cell to fill.</param>
-        /// <param name="value">The value to place; 0 for clear, or 1-9.</param>
-        public void PutCell(int Where, int value) { this[Where] = value; }
+        public Board(int Seed)
+        {
+            FillRandom(new Random(Seed));
+        }
+
+        public Board(Random stream)
+        {
+            FillRandom(stream);
+        }
+        #endregion
 
         /// <summary>
         /// Overrides array indexing (suare brackets []) for accessing locations in the Grid.
@@ -57,7 +54,6 @@ namespace SudokuSharp
         public int this[int where]
         {
             get { return data[where]; }
-            set { data[where] = value; }
         }
 
         private int[] GetRow(int Row)

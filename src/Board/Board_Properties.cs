@@ -69,7 +69,7 @@ namespace SudokuSharp
 
                 foreach (var idx in Location.All)
                 {
-                    int value = GetCell(idx);
+                    int value = this[idx];
 
                     CountByRow[Location.Row(idx), value]++;
                     CountByColumn[Location.Column(idx), value]++;
@@ -181,18 +181,25 @@ namespace SudokuSharp
             {
                 if (work.data[idx] == 0)
                 { // Only test against empty cells
+<<<<<<< HEAD
                     var Candidates = work.Find.Candidates(idx);
+=======
+                    var Candidates = FindCandidates(idx);
+>>>>>>> Rewrite_API
 
-                    if (Candidates.Count > 1)
+                    if (Candidates.Count() > 1)
                     { // Only test where there's more than one option
                         bool foundSolution = false;
+<<<<<<< HEAD
                         var working = new Board(work);
+=======
+>>>>>>> Rewrite_API
 
                         foreach (int test in Candidates)
                         {
-                            working[idx] = test;
+                            var work = Put(idx, test);
 
-                            if (working.Fill.Sequential() != null)
+                            if (work.FillSequential() != null)
                             {
                                 // We just found a solution. If we have already found a solution, then multiple exist and we may quit.
                                 if (foundSolution)
@@ -218,16 +225,15 @@ namespace SudokuSharp
             Board work = new Board(this);
 
             // fill everything that has definite answers
-            var mustFill = work.Find.AllSingles().Union(work.Find.LockedCandidates());
-            while (mustFill.Count() > 0)
+            var mustFill = work.FindAllSingles();
+            while (mustFill.Any())
             {
-                foreach (var item in mustFill)
-                    work[item.Key] = item.Value;
+                work = work.Put(mustFill);
 
-                mustFill = work.Find.LockedCandidates();
+                mustFill = work.FindAllSingles();
             }
 
-            if (IsSolved)
+            if (work.IsSolved)
                 return 1;
 
             return CountRecursion(work, 0);
@@ -235,23 +241,23 @@ namespace SudokuSharp
 
         private static int CountRecursion(Board work, int idx)
         {
-            if (idx == 81) // using int instead of Location because Location CAN'T have a value of 81
+            if (idx == 81)
                 return 1;
 
             if (work[idx] > 0)
                 return CountRecursion(work, idx + 1);
 
-            var possible = work.Find.Candidates(idx);
-            if (possible.Count == 0)
+            var possible = work.FindCandidates(idx);
+            if (possible.Count() == 0)
                 return 0;
 
             int count = 0;
             foreach (var item in possible)
             {
-                work[idx] = item;
+                work.data[idx] = item;
                 count += CountRecursion(work, idx + 1);
             }
-            work[idx] = 0;
+            work.data[idx] = 0;
 
             return count;
         }

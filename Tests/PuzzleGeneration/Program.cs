@@ -10,27 +10,36 @@ namespace PuzzleGeneration
     {
         static void Main(string[] args)
         {
-            int Batches = 10;
-            int BatchSize = 50;
+            int numBatches = 10;
+            int batchSize = 500_000;
 
-            Console.WriteLine("Timing the creation of {0:N0} puzzles.", Batches*BatchSize);
-            var rnd = new Random(0);
-            var brd = SudokuSharp.Factory.Solution(rnd);
+            var mask = new List<int> { 0, 10, 20, 30, 40, 50, 60, 70, 80, 4, 14, 24, 34, 44, 36, 46, 56, 66, 76, 15, 16, 25, 55, 64, 65 };
+            var valuesToFill = from loc in mask
+                               select (loc, 1);
+            var maskedBoard = new SudokuSharp.Board().Put(valuesToFill);
 
-            TimeSpan elapsed;
-            var start = DateTime.Now;
-            for (int i = 0; i < Batches; i++)
+            var generator = new SudokuSharp.Board.PuzzleGenerator(mask);
+            var b = generator.First();
+
+            int tGenerated = 0;
+            TimeSpan tSpan = new TimeSpan();
+
+            for (int i=0; i<numBatches;i++)
             {
-                var bStart = DateTime.Now;
-                for (int j = 0; j < BatchSize; j++)
-                {
-                    SudokuSharp.Factory.Puzzle(brd, rnd, 10, 10, 10);
-                }
-                elapsed = DateTime.Now - bStart;
-                Console.WriteLine("{0:N0} puzzles created in {1:0.00} seconds for {2:N0} puzzles per second.", BatchSize, elapsed.TotalSeconds, BatchSize / elapsed.TotalSeconds);
+                var start = DateTime.Now;
+                for (int j = 0; j < batchSize; j++)
+                    generator.Next();
+                var end = DateTime.Now;
+
+                var span = end - start;
+
+                tGenerated += batchSize;
+                tSpan += span;
+
+                Console.WriteLine("Generated {0} puzzles in {1} seconds for {2:N} puzzles/second.", batchSize, span.TotalSeconds, batchSize / span.TotalSeconds);
             }
-            elapsed = DateTime.Now - start;
-            Console.WriteLine("{0:N0} puzzles created in {1:0.00} seconds for {2:N0} puzzles per second.", BatchSize * Batches, elapsed.TotalSeconds, (BatchSize*Batches) / elapsed.TotalSeconds);
+
+            Console.WriteLine("Generated {0} puzzles total in {1} seconds total for {2:N} puzzles/second.", tGenerated, tSpan.TotalSeconds, tGenerated / tSpan.TotalSeconds);
         }
     }
 }
